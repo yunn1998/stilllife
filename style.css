@@ -1,0 +1,699 @@
+/* ============================================================
+   stilllife — brand site
+   style.css
+   全クラス: sl- prefix
+   ============================================================ */
+
+/* ---------- Variables ---------- */
+.sl-body {
+  --sl-bg:       #0f0e0d;
+  --sl-surface:  #1c1a18;   /* bg より少し明るく、セクション差を明確に */
+  --sl-ink:      #ede7dc;   /* 主テキスト：暖白をやや明るく */
+  --sl-ink-dim:  #a89f94;   /* 副テキスト：変わらず */
+  --sl-sub:      #7a6f63;   /* ラベル・最小文字：少し明るく可読性UP */
+  --sl-rule:     #2e2924;   /* 罫線：少し明るく存在感を持たせる */
+  --sl-warm:     #9a9088;   /* ウォームグレー mid */
+  --sl-warm-lt:  #ccc0ae;   /* アクセント：少し明るく際立たせる */
+  --sl-white:    #f0ece4;   /* BRAIN ノード背景 */
+  --sl-brain-bg: #e8e2d8;   /* BRAIN ノード専用：柔らかいクリーム */
+
+  --sl-font-serif: "Noto Serif JP", "Yu Mincho", "Hiragino Mincho ProN", serif;
+  --sl-font-sans:  "Inter", "Helvetica Neue", Arial, sans-serif;
+
+  --sl-max-w: 1080px;
+  --sl-pad-x: 48px;
+  --sl-ease:  cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Reset ---------- */
+.sl-body *, .sl-body *::before, .sl-body *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.sl-body {
+  background: var(--sl-bg);
+  color: var(--sl-ink);
+  font-family: var(--sl-font-serif);
+  font-size: 15px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sl-body a { color: inherit; text-decoration: none; }
+.sl-body ul, .sl-body ol { list-style: none; }
+
+/* ---------- Container ---------- */
+.sl-container {
+  width: 100%;
+  max-width: var(--sl-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sl-pad-x);
+}
+
+/* ---------- Fade-in ---------- */
+.sl-fade {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s var(--sl-ease), transform 0.9s var(--sl-ease);
+}
+.sl-fade.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Shared ---------- */
+.sl-eyebrow {
+  display: block;
+  font-family: var(--sl-font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  color: var(--sl-sub);
+  text-transform: uppercase;
+}
+
+.sl-section {
+  padding: 140px 0;
+  border-top: 1px solid var(--sl-rule);
+}
+
+/* ============================================================
+   HEADER
+============================================================ */
+.sl-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(15, 14, 13, 0.9);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--sl-rule);
+}
+
+.sl-header-inner {
+  max-width: var(--sl-max-w);
+  margin: 0 auto;
+  padding: 0 var(--sl-pad-x);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sl-logo {
+  font-family: var(--sl-font-serif);
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--sl-ink);
+  transition: color 0.2s;
+}
+.sl-logo:hover { color: var(--sl-warm-lt); }
+
+.sl-nav {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.sl-nav-link {
+  font-family: var(--sl-font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  color: var(--sl-sub);
+  transition: color 0.2s;
+}
+.sl-nav-link:hover { color: var(--sl-warm-lt); }
+
+/* ============================================================
+   HERO
+============================================================ */
+.sl-hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: stretch;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景の極薄テキスト */
+.sl-hero::before {
+  content: "stilllife";
+  position: absolute;
+  bottom: -0.18em;
+  left: -0.04em;
+  font-family: var(--sl-font-serif);
+  font-size: clamp(120px, 18vw, 260px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.025);
+  letter-spacing: 0.06em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sl-hero .sl-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  gap: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.sl-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sl-hero-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+}
+
+.sl-hero-headline {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(48px, 7.5vw, 96px);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  color: var(--sl-white);
+}
+
+.sl-hero-body {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(13px, 1.4vw, 15px);
+  font-weight: 300;
+  line-height: 2;
+  letter-spacing: 0.08em;
+  color: var(--sl-ink-dim);
+  max-width: 400px;
+}
+
+.sl-hero-foot {
+  padding-top: 48px;
+  border-top: 1px solid var(--sl-rule);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sl-hero-note {
+  font-family: var(--sl-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--sl-sub);
+}
+
+/* ============================================================
+   ABOUT
+============================================================ */
+.sl-about { background: var(--sl-bg); }
+
+.sl-about-inner {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.sl-about-left {
+  padding-top: 8px;
+}
+
+.sl-about-headline {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 300;
+  line-height: 1.7;
+  letter-spacing: 0.06em;
+  color: var(--sl-white);
+  margin-bottom: 48px;
+}
+
+.sl-about-body {
+  font-family: var(--sl-font-serif);
+  font-size: 14px;
+  line-height: 2.2;
+  letter-spacing: 0.04em;
+  color: var(--sl-ink-dim);
+  margin-bottom: 20px;
+}
+.sl-about-body:last-child { margin-bottom: 0; }
+
+/* ============================================================
+   OUR ROLE
+============================================================ */
+.sl-role { background: var(--sl-surface); }
+
+.sl-role-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sl-role-header {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-bottom: 56px;
+}
+
+.sl-role-headline {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.06em;
+  color: var(--sl-white);
+  max-width: 560px;
+}
+
+.sl-role-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sl-role-desc {
+  font-family: var(--sl-font-serif);
+  font-size: 14px;
+  line-height: 2.2;
+  letter-spacing: 0.04em;
+  color: var(--sl-ink-dim);
+  max-width: 560px;
+  width: 100%;
+  margin-bottom: 80px;
+}
+
+.sl-role-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: 100%;
+}
+
+.sl-role-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 180px;
+  height: 180px;
+  border: 1px solid var(--sl-rule);
+  background: var(--sl-bg);
+  flex-shrink: 0;
+  text-align: center;
+  transition: border-color 0.3s;
+}
+
+.sl-role-node--brain {
+  width: 220px;
+  height: 220px;
+  background: var(--sl-brain-bg);
+  border-color: var(--sl-brain-bg);
+}
+
+.sl-role-en {
+  font-family: var(--sl-font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  color: var(--sl-sub);
+  display: block;
+}
+.sl-role-node--brain .sl-role-en {
+  color: #8a7e72;
+}
+
+.sl-role-ja {
+  font-family: var(--sl-font-serif);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--sl-ink-dim);
+  display: block;
+}
+.sl-role-node--brain .sl-role-ja {
+  color: var(--sl-bg);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.sl-role-conn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 40px;
+  max-width: 100px;
+}
+
+.sl-role-verb {
+  font-family: var(--sl-font-sans);
+  font-size: 7px;
+  letter-spacing: 0.18em;
+  color: var(--sl-sub);
+  opacity: 0.5;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.sl-role-line {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--sl-rule);
+  position: relative;
+}
+.sl-role-line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  border: 4px solid transparent;
+  border-left-color: var(--sl-rule);
+}
+
+@media (max-width: 860px) {
+  .sl-role-node { width: 140px; height: 140px; }
+  .sl-role-node--brain { width: 170px; height: 170px; }
+  .sl-role-ja { font-size: 13px; }
+  .sl-role-node--brain .sl-role-ja { font-size: 15px; }
+}
+
+@media (max-width: 600px) {
+  .sl-role-node { width: 96px; height: 96px; gap: 8px; }
+  .sl-role-node--brain { width: 118px; height: 118px; }
+  .sl-role-ja { font-size: 11px; }
+  .sl-role-node--brain .sl-role-ja { font-size: 12px; }
+  .sl-role-en { font-size: 7px; letter-spacing: 0.2em; }
+  .sl-role-conn { min-width: 20px; }
+}
+
+/* ============================================================
+   SERVICE
+============================================================ */
+.sl-service { background: var(--sl-bg); }
+
+.sl-service-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 72px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--sl-rule);
+}
+
+.sl-service-heading-en {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--sl-white);
+  line-height: 1.2;
+}
+
+.sl-service-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.sl-service-tagline {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: 0.06em;
+  color: var(--sl-white);
+  margin-bottom: 32px;
+}
+
+.sl-service-desc {
+  font-family: var(--sl-font-serif);
+  font-size: 13px;
+  line-height: 2.1;
+  letter-spacing: 0.04em;
+  color: var(--sl-ink-dim);
+  margin-bottom: 16px;
+}
+.sl-service-desc:last-of-type { margin-bottom: 40px; }
+
+.sl-service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sl-font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--sl-warm-lt);
+  border-bottom: 1px solid var(--sl-sub);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.sl-service-link:hover {
+  color: var(--sl-white);
+  border-color: var(--sl-warm-lt);
+}
+
+/* モジュールリスト */
+.sl-service-modules {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.sl-service-module {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-top: 1px solid var(--sl-rule);
+  align-items: start;
+}
+.sl-service-module:last-child { border-bottom: 1px solid var(--sl-rule); }
+
+.sl-module-num {
+  font-family: var(--sl-font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  color: var(--sl-sub);
+  padding-top: 4px;
+}
+
+.sl-module-title {
+  font-family: var(--sl-font-serif);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--sl-ink);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.sl-module-desc {
+  font-family: var(--sl-font-serif);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--sl-sub);
+  line-height: 1.7;
+}
+
+/* メタ情報 */
+.sl-service-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--sl-rule);
+  padding-top: 24px;
+}
+
+.sl-meta-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--sl-rule);
+  gap: 16px;
+}
+
+.sl-meta-label {
+  font-family: var(--sl-font-sans);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  color: var(--sl-sub);
+  white-space: nowrap;
+}
+
+.sl-meta-val {
+  font-family: var(--sl-font-serif);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--sl-ink-dim);
+  text-align: right;
+}
+
+/* ============================================================
+   PHILOSOPHY
+============================================================ */
+.sl-philosophy {
+  background: var(--sl-bg);
+  padding: 160px 0;
+}
+
+.sl-philosophy-inner {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sl-philosophy-quote {
+  border: none;
+  padding: 0;
+}
+
+.sl-philosophy-quote p {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(22px, 3.2vw, 38px);
+  font-weight: 300;
+  line-height: 1.75;
+  letter-spacing: 0.07em;
+  color: var(--sl-white);
+}
+
+.sl-philosophy-body {
+  font-family: var(--sl-font-serif);
+  font-size: 14px;
+  line-height: 2.2;
+  letter-spacing: 0.04em;
+  color: var(--sl-ink-dim);
+  max-width: 600px;
+  padding-top: 16px;
+  border-top: 1px solid var(--sl-rule);
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+.sl-contact {
+  background: var(--sl-surface);
+  padding: 160px 0;
+}
+
+.sl-contact-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sl-contact-inner .sl-eyebrow {
+  margin-bottom: 40px;
+}
+
+.sl-contact-headline {
+  font-family: var(--sl-font-serif);
+  font-size: clamp(28px, 4.5vw, 56px);
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.07em;
+  color: var(--sl-white);
+  margin-bottom: 64px;
+}
+
+.sl-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--sl-font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--sl-bg);
+  background: var(--sl-white);
+  padding: 18px 44px;
+  transition: background 0.25s, color 0.25s;
+  align-self: flex-start;
+}
+.sl-contact-btn:hover {
+  background: var(--sl-warm-lt);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.sl-footer {
+  background: var(--sl-bg);
+  border-top: 1px solid var(--sl-rule);
+  padding: 36px 0;
+}
+
+.sl-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sl-footer-brand {
+  font-family: var(--sl-font-serif);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  color: var(--sl-sub);
+}
+
+.sl-footer-copy {
+  font-family: var(--sl-font-sans);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  color: var(--sl-rule);
+  color: #3a342e;
+}
+
+/* ============================================================
+   RESPONSIVE — Tablet (≤ 860px)
+============================================================ */
+@media (max-width: 860px) {
+  .sl-body { --sl-pad-x: 32px; }
+  .sl-section { padding: 100px 0; }
+
+  .sl-about-inner { grid-template-columns: 1fr; gap: 36px; }
+  .sl-service-body { grid-template-columns: 1fr; gap: 64px; }
+
+  .sl-nav { gap: 28px; }
+}
+
+/* ============================================================
+   RESPONSIVE — Mobile (≤ 600px)
+============================================================ */
+@media (max-width: 600px) {
+  .sl-body { --sl-pad-x: 24px; }
+  .sl-section { padding: 80px 0; }
+
+  .sl-hero { padding: 96px 0 64px; }
+  .sl-hero::before { font-size: 80px; }
+  .sl-hero-top { flex-direction: column; gap: 4px; }
+
+  .sl-philosophy { padding: 100px 0; }
+  .sl-contact { padding: 100px 0; }
+
+  .sl-footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+
+  .sl-nav { gap: 20px; }
+}
