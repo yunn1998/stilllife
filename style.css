@@ -626,13 +626,13 @@
   font-weight: 400;
   letter-spacing: 0.18em;
   color: var(--sl-bg);
-  background: var(--sl-warm-lt);
+  background: var(--sl-warm);
   padding: 18px 44px;
   transition: background 0.25s, color 0.25s;
   align-self: flex-start;
 }
 .sl-contact-btn:hover {
-  background: var(--sl-ink);
+  background: var(--sl-warm-lt);
 }
 
 /* ============================================================
